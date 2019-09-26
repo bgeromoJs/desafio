@@ -1,19 +1,28 @@
 import React from 'react';
 
 import { Container, Header, Button } from './styles';
+import { BrowserRouter, Link } from 'react-router-dom';
 
-import {Repositories, Favorites, Followers} from '../lists'
+import Routes from '../../routes';
 
 const Content = () => {
   return (
-    <Container>
-      <Header>
-        <Button>MEUS REPOSITORIOS</Button>
-        <Button>REPOSITORIOS FAVORITOS</Button>
-        <Button>SEGUIDORES</Button>
-      </Header>
-      <Followers/>
-    </Container>
+    <BrowserRouter>
+      <Container>
+        <Header>
+          <Link style={{textDecoration: 'none'}} to="/">
+            <Button>MEUS REPOSITORIOS</Button>
+          </Link>
+          <Link style={{textDecoration: 'none'}} to="/favorites">
+            <Button>REPOSITORIOS FAVORITOS</Button>
+          </Link>
+          <Link style={{textDecoration: 'none'}} to="/followers">
+            <Button>SEGUIDORES</Button>
+          </Link>
+        </Header>
+          <Routes/>      
+      </Container>
+    </BrowserRouter>
   );
 }
 
