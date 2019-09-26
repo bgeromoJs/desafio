@@ -1,7 +1,15 @@
 import React from 'react';
+import Header from './components/header'
+import Wrapper from './page'
+import './global.css';
 
 function App() {
-  return <h1>Hello World</h1>
+  return (
+    <>
+      <Header/>
+      <Wrapper/>  
+    </>
+  )
 }
 
 export default App;
