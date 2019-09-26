@@ -7,8 +7,8 @@ function Routes() {
     return (
       <Switch>
         <Route path="/" exact component={Repositories} />
-        <Route path="/Favorites" component={Favorites} />
-        <Route path="/Followers" component={Followers} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/followers" component={Followers} />
       </Switch>
     )
 }

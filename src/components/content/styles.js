@@ -15,8 +15,8 @@ export const Header = styled.div`
 
 export const Button = styled.div`
   cursor: pointer;
-  background: #ddd;
-  color: #111;
+  background: ${props => props.isActive ? '#b7b7b7': '#ddd' };
+  color: ${props => props.isActive ? '#5a5760': '#111' };
   width: 260px;
   height: 55px;
   border-radius: 5px;
