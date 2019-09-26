@@ -20,7 +20,7 @@ const Content = () => {
             <Button>SEGUIDORES</Button>
           </Link>
         </Header>
-          <Routes/>      
+        <Routes/>      
       </Container>
     </BrowserRouter>
   );

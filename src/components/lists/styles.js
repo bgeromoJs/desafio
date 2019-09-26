@@ -1,7 +1,19 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+
+const fade = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+`;
 
 export const Container = styled.div`
   padding: 50px 0px 0px 0px;
+  animation: ${fade} 250ms linear;
 `;
 
 export const RepositoriesItem = styled.div`

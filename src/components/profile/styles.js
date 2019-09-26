@@ -1,6 +1,18 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
+
+const move = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-35%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+`;
 
 export const Container = styled.div`
+  overflow: hidden;
   width: 320px;
   height: 620px;
   background: #fff;
@@ -19,6 +31,7 @@ export const Picture = styled.img`
 `;
 
 export const Description = styled.div`
+  animation: ${move} ${props => props.renderDelay || "50ms"} linear;
   padding: 20px;
   border-bottom: solid 1px #ddd;
   color: #888;
