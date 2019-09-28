@@ -67,7 +67,7 @@ export const Followers = () => {
             <Spinner size={60} spinnerColor={"#333"} spinnerWidth={1} visible={true} />
           </SpinnerContainer>
         : follow.map(item => (
-            <FollowersItem>
+            <FollowersItem key={item.name}>
               <LeftContent>
                 <Content>nome do seguidor: {item.name}</Content>
                 <Content>empresa: {item.company}</Content>  

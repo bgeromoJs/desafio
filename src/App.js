@@ -4,14 +4,15 @@ import Header from './components/header'
 import { loginRequest } from './actions'
 import Wrapper from './page'
 import './global.css';
-import axios from 'axios';
+import api from './api';
+import {auth} from './auth';
 
 const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
     async function loadRepositories() {
-      const response = await axios.get('https://api.github.com/users/octocat');
+      const response = await api.get(`users/octocat?${auth}`);
       dispatch(loginRequest(response.data))
     }
     loadRepositories();
@@ -20,7 +21,8 @@ const App = () => {
   return (
     <>
       <Header/>
-      <Wrapper/>  
+      <Wrapper/>
+     }
     </>
   )
 }

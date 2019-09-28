@@ -6,9 +6,10 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import { repRequest, followersRequest, starredRequest } from '../../actions'
 import Routes from '../../routes';
 import api from '../../api';
+import {auth} from '../../auth';
 
 const Content = () => {
-  const [setActive] = useState('/');
+  const [active, setActive] = useState('/');
   const [obj, setObj] = useState([]);
   const [starred, setStarred] = useState([]);
   const [follow, setFollow] = useState([]);
@@ -18,6 +19,8 @@ const Content = () => {
 
 
   useEffect(() => {
+
+    // Repositories request
     function loadRepositories() {
       api.get(`search/repositories?q=user:${user.userLogged}`)
         .then(response => {
@@ -32,7 +35,7 @@ const Content = () => {
         })
     }
     function requestContri(name, index) {
-      api.get(`repos/${user.userLogged}/${name}/stats/contributors`)
+      api.get(`repos/${user.userLogged}/${name}/stats/contributors?${auth}`)
         .then(response => {
           let a = obj
           a[index] = {...a[index], contri: response.data[0].total}
@@ -42,7 +45,7 @@ const Content = () => {
     }
     
     function requestCommit(name, index) {
-      api.get(`search/commits?q=repo:${user.userLogged}/${name}+css`)
+      api.get(`search/commits?q=repo:${user.userLogged}/${name}+css?${auth}`)
         .then(response => {
           let a = obj
           a[index] = {...a[index], commit: response.data.total_count}
@@ -53,8 +56,10 @@ const Content = () => {
     }
 
 
+
+    // Followers request
     function requestFollowers() {
-      api.get(`users/${user.userLogged}/followers`)
+      api.get(`users/${user.userLogged}/followers?${auth}`)
         .then(response=> {
           response.data.map((item, index) => {
             let a = follow
@@ -69,7 +74,7 @@ const Content = () => {
         })
       }
     function requestDetail(name, index) {
-      api.get(`users/${name}`)
+      api.get(`users/${name}?${auth}`)
         .then(response => {
           let a = follow
           a[index] = {...a[index], company: response.data.company, location: response.data.location }
@@ -78,7 +83,7 @@ const Content = () => {
         })
     }
     function requestStars(name, index) {
-      api.get(`users/${name}/starred`)
+      api.get(`users/${name}/starred?${auth}`)
         .then(response => {
           let a = follow
           a[index] = {...a[index], stars: response.data.length}
@@ -88,9 +93,9 @@ const Content = () => {
         })
     }
 
-
+    // Starred Request
     function requestStarreds() {
-      api.get(`users/${user.userLogged}/starred`)
+      api.get(`users/${user.userLogged}/starred?${auth}`)
         .then(response=> {
           response.data.map((item, index) => {
             let a = starred
@@ -102,7 +107,7 @@ const Content = () => {
         })
     }
     function requestContriStar(name, index) {
-      api.get(`repos/${user.userLogged}/${name}/stats/contributors`)
+      api.get(`repos/${user.userLogged}/${name}/stats/contributors?${auth}`)
         .then(response => {
           let a = starred
           a[index] = {...a[index], contri: response.data[0].total}

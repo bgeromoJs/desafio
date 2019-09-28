@@ -1,0 +1,1 @@
+export const auth = 'client_id=79140f2d93582577ce6a&client_secret=597752d2f936b3d62257beb1f48b5e708a0c9344'
