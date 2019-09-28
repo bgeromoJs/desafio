@@ -11,11 +11,16 @@ const fade = keyframes`
   }
 `;
 
-export const LeftContent = styled.div`
-  
+export const LeftContent = styled.div``;
+
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
 `;
 
 export const Container = styled.div`
+  overflow: hidden;
   padding: 50px 0px 0px 0px;
   animation: ${fade} 250ms linear;
 `;

@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Header from './components/header'
 import { loginRequest } from './actions'
 import Wrapper from './page'

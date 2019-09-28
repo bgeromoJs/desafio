@@ -11,6 +11,13 @@ const move = keyframes`
   }
 `;
 
+
+export const SpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+`;
+
 export const Container = styled.div`
   overflow: hidden;
   width: 320px;

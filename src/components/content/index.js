@@ -8,7 +8,7 @@ import Routes from '../../routes';
 import api from '../../api';
 
 const Content = () => {
-  const [active, setActive] = useState('/');
+  const [setActive] = useState('/');
   const [obj, setObj] = useState([]);
   const [starred, setStarred] = useState([]);
   const [follow, setFollow] = useState([]);
@@ -27,6 +27,7 @@ const Content = () => {
             setObj(a)
             requestContri(item.name, index)
             requestCommit(item.name, index)
+            return a
           })
         })
     }
@@ -36,6 +37,7 @@ const Content = () => {
           let a = obj
           a[index] = {...a[index], contri: response.data[0].total}
           setObj(a)
+          return a
         })
     }
     
@@ -46,6 +48,7 @@ const Content = () => {
           a[index] = {...a[index], commit: response.data.total_count}
           setObj(a)
           dispatch(repRequest(a))
+          return a
         })
     }
 
@@ -61,6 +64,7 @@ const Content = () => {
             requestDetail(item.login, index)
             requestStars(item.login, index)
             dispatch(followersRequest(follow))
+            return a
           })
         })
       }
@@ -70,6 +74,7 @@ const Content = () => {
           let a = follow
           a[index] = {...a[index], company: response.data.company, location: response.data.location }
           setFollow(a)
+          return a
         })
     }
     function requestStars(name, index) {
@@ -79,6 +84,7 @@ const Content = () => {
           a[index] = {...a[index], stars: response.data.length}
           setFollow(a)
           dispatch(followersRequest(follow))
+          return a
         })
     }
 
@@ -91,6 +97,7 @@ const Content = () => {
             a.push({name: item.name, created: item.created_at})
             setStarred(a)
             requestContriStar(item.name, index)
+            return a
           })
         })
     }
@@ -101,6 +108,7 @@ const Content = () => {
           a[index] = {...a[index], contri: response.data[0].total}
           setStarred(a)
           dispatch(starredRequest(starred))
+          return a
         })
     }
 

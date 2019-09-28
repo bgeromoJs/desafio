@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
-import api from '../../api';
+import React, {useEffect} from 'react';
+import { useSelector } from 'react-redux';
+import Spinner from 'react-spinner-material';
 import { 
   Container, 
   RepositoriesItem, 
@@ -9,17 +8,21 @@ import {
   FavoritesItem, 
   FollowersItem,
   Image,
-  LeftContent
+  LeftContent,
+  SpinnerContainer
 } from './styles';
-import { followersRequest } from '../../actions';
 
 export const Repositories = () => {
   const rep = useSelector(state => state.rep.repositories) || []
 
   return (
     <Container>
-      {rep.map(item => (
-        <RepositoriesItem key={item.id}>
+      {rep.length === 0 || rep === 'undefined'
+        ? <SpinnerContainer>
+            <Spinner size={60} spinnerColor={"#333"} spinnerWidth={1} visible={true} />
+          </SpinnerContainer>
+        : rep.map(item => (
+        <RepositoriesItem key={item.name}>
           <Content>nome do repositório: {item.name ? item.name : null} </Content>
           <Content>data de criação do repositório(dd-mm-aaaa, hh:mm:ss): {item.created  ? new Date(item.created).toLocaleString() : null}</Content>  
           <Content>total de contribuições: {item.contri ? item.contri : null}</Content>  
@@ -35,39 +38,45 @@ export const Favorites = () => {
 
   return (
     <Container>
-      {rep.map(item => (
-        <RepositoriesItem key={item.id}>
-          <Content>nome do repositório: {item.name ? item.name : null} </Content>
-          <Content>data de criação do repositório(dd-mm-aaaa, hh:mm:ss): {item.created  ? new Date(item.created).toLocaleString() : null}</Content>  
-          <Content>total de contribuições: {item.contri ? item.contri : 0}</Content>  
-        </RepositoriesItem>
-      ))}
+      {rep.length === 0 || rep === 'undefined'
+        ? <SpinnerContainer>
+            <Spinner size={60} spinnerColor={"#333"} spinnerWidth={1} visible={true} />
+          </SpinnerContainer>
+        : rep.map(item => (
+          <FavoritesItem key={item.name}>
+            <Content>nome do repositório: {item.name ? item.name : null} </Content>
+            <Content>data de criação do repositório(dd-mm-aaaa, hh:mm:ss): {item.created  ? new Date(item.created).toLocaleString() : null}</Content>  
+            <Content>total de contribuições: {item.contri ? item.contri : 0}</Content>  
+          </FavoritesItem>
+        ))
+      }
     </Container>
   );
 }
 
 export const Followers = () => {
   const follow = useSelector(state => state.follow.followers) || []
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.user)
   
   useEffect(() => {
         /*eslint-disable */
   },[follow])
   return (
     <Container>
-      {
-        follow.map(item => (
-          <FollowersItem>
-            <LeftContent>
-              <Content>nome do seguidor: {item.name}</Content>
-              <Content>empresa: {item.company}</Content>  
-              <Content>localização: {item.location}</Content>  
-              <Content>total de repositórios com estrela ou curtido: {item.stars}</Content> 
-            </LeftContent>
-            <Image src={item.picture}/>
-          </FollowersItem>
-        ))
+      {follow.length == 0 || follow == 'undefined'
+        ? <SpinnerContainer>
+            <Spinner size={60} spinnerColor={"#333"} spinnerWidth={1} visible={true} />
+          </SpinnerContainer>
+        : follow.map(item => (
+            <FollowersItem>
+              <LeftContent>
+                <Content>nome do seguidor: {item.name}</Content>
+                <Content>empresa: {item.company}</Content>  
+                <Content>localização: {item.location}</Content>  
+                <Content>total de repositórios com estrela ou curtido: {item.stars}</Content> 
+              </LeftContent>
+              <Image src={item.picture}/>
+            </FollowersItem>
+          ))
       }
     </Container>
   );
