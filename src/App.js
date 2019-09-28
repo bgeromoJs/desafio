@@ -1,9 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import Header from './components/header'
+import { loginRequest } from './actions'
 import Wrapper from './page'
 import './global.css';
+import axios from 'axios';
 
-function App() {
+const App = () => {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    async function loadRepositories() {
+      const response = await axios.get('https://api.github.com/users/octocat');
+      dispatch(loginRequest(response.data))
+    }
+    loadRepositories();
+    /*eslint-disable */
+  }, []);
   return (
     <>
       <Header/>
@@ -12,4 +25,4 @@ function App() {
   )
 }
 
-export default App;
+export default (App);

@@ -11,6 +11,10 @@ const fade = keyframes`
   }
 `;
 
+export const LeftContent = styled.div`
+  
+`;
+
 export const Container = styled.div`
   padding: 50px 0px 0px 0px;
   animation: ${fade} 250ms linear;
@@ -50,7 +54,8 @@ export const FollowersItem = styled.div`
   padding: 20px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
   overflow: hidden;
   margin-bottom: 25px;
 `;
@@ -64,6 +69,4 @@ export const Image = styled.img`
   height: 105px;
   width: 105px;
   border-radius: 100%;
-  align-self: flex-end;
-  position: fixed;
 `;
