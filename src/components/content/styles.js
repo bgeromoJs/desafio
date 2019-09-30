@@ -15,15 +15,14 @@ export const Header = styled.div`
 
 export const Button = styled.div`
   cursor: pointer;
-  /* background: ${props => props.isActive ? '#b7b7b7': '#ddd' };
-  color: ${props => props.isActive ? '#5a5760': '#111' }; */
+  background: #fff;
   border-width: 0.5;
   border-style: solid;
   border-color: ${props => props.isActive ? '#555': '#ddd' };
   width: 260px;
   height: 55px;
   border-radius: 10px;
-
+  ${props => props.isActive ? 'box-shadow: 0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important' : 'none'};
   padding: 17px 20px 20px 20px;
   text-align: center;
 
