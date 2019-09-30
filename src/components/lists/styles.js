@@ -11,7 +11,11 @@ const fade = keyframes`
   }
 `;
 
-export const LeftContent = styled.div``;
+export const LeftContent = styled.div`
+  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const SpinnerContainer = styled.div`
   display: flex;
@@ -34,6 +38,7 @@ export const RepositoriesItem = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   margin-bottom: 25px;
 `;
@@ -47,6 +52,7 @@ export const FavoritesItem = styled.div`
 
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   overflow: hidden;
   margin-bottom: 25px;
 `;
@@ -66,7 +72,6 @@ export const FollowersItem = styled.div`
 `;
 
 export const Content = styled.div`
-  margin-bottom: 10px;
   font-size: 18px;
 `;
 

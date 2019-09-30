@@ -15,22 +15,25 @@ export const Header = styled.div`
 
 export const Button = styled.div`
   cursor: pointer;
-  background: ${props => props.isActive ? '#b7b7b7': '#ddd' };
-  color: ${props => props.isActive ? '#5a5760': '#111' };
+  /* background: ${props => props.isActive ? '#b7b7b7': '#ddd' };
+  color: ${props => props.isActive ? '#5a5760': '#111' }; */
+  border-width: 0.5;
+  border-style: solid;
+  border-color: ${props => props.isActive ? '#555': '#ddd' };
   width: 260px;
   height: 55px;
-  border-radius: 5px;
+  border-radius: 10px;
 
-  padding: 20px;
+  padding: 17px 20px 20px 20px;
   text-align: center;
 
   font-size: 15px;
   font-weight: bold;
 
-  color: #fff;
+  color: ${props => props.isActive ? '#222': '#555' };
 
   &:hover {
-    background: #b7b7b7;
-    color: #5a5760;
+    border-color: #222;
+    color: #222;
   }
 `;

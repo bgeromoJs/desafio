@@ -45,10 +45,10 @@ const Content = () => {
     }
     
     function requestCommit(name, index) {
-      api.get(`search/commits?q=repo:${user.userLogged}/${name}+css?${auth}`)
+      api.get(`/repos/${user.userLogged}/${name}/commits?${auth}`)
         .then(response => {
           let a = obj
-          a[index] = {...a[index], commit: response.data.total_count}
+          a[index] = {...a[index], commit: response.data.length}
           setObj(a)
           dispatch(repRequest(a))
           return a
@@ -101,13 +101,13 @@ const Content = () => {
             let a = starred
             a.push({name: item.name, created: item.created_at})
             setStarred(a)
-            requestContriStar(item.name, index)
+            requestContriStar(item, index)
             return a
           })
         })
     }
-    function requestContriStar(name, index) {
-      api.get(`repos/${user.userLogged}/${name}/stats/contributors?${auth}`)
+    function requestContriStar(item, index) {
+      api.get(`repos/${item.owner.login}/${item.name}/stats/contributors?${auth}`)
         .then(response => {
           let a = starred
           a[index] = {...a[index], contri: response.data[0].total}
